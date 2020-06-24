@@ -1,0 +1,33 @@
+[package]
+name = "rustboot"
+version = "0.1.0"
+authors = ["karthick <karthickps.ai@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+cortex-m = "^0.6.0"
+cortex-m-rt = "^0.6.0"
+panic-halt = "0.2.0"
+panic-itm = "0.4"
+
+[dependencies.stm32f7xx-hal]
+git = "https://github.com/stm32-rs/stm32f7xx-hal.git"
+branch = "master"
+version = "0.1.0"
+features = ["rt", "stm32f767"] # replace the model of your microcontroller here
+
+[dependencies.stm32-eth]
+version = "0.1.2"
+git = "https://github.com/dtjones190/stm32-eth.git"
+branch = "master"
+features = ["smoltcp-phy", "nucleo-f767zi"]
+
+
+[profile.release]
+debug = true
+lto = true
+codegen-units = 1
+incremental = false
+opt-level = "s"
